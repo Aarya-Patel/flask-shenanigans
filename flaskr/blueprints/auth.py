@@ -5,14 +5,10 @@ from ..db import Database
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-# Initiate a db connection
-
 
 @bp.before_request
 def before_request():
   g.db = Database()
-
-# Close the db connection
 
 
 @bp.after_request
