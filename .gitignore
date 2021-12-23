@@ -1,0 +1,6 @@
+__pycache__
+.pep8
+.vscode
+*.pyc
+venv
+.env
