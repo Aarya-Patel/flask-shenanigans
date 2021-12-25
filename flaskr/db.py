@@ -5,7 +5,6 @@ from psycopg2.errors import UniqueViolation
 
 class Database():
   def __init__(self):
-    print()
     try:
       self.conn = psycopg2.connect(
           host=os.environ.get('PSQL_HOST'),
@@ -33,6 +32,14 @@ class Database():
       with conn.cursor() as cur:
         cur.execute('SELECT * FROM Users WHERE username = %s', (username,))
         data = cur.fetchone()
+        return data
+
+  def get_all_users(self):
+    """Gets all the users within the db"""
+    with self.conn as conn:
+      with conn.cursor() as cur:
+        cur.execute('SELECT username FROM Users')
+        data = cur.fetchall()
         return data
 
   def close(self):
